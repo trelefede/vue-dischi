@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderComponent />
+    <MainComponent :data="albums" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import HeaderComponent from "./components/HeaderComponent.vue";
+import MainComponent from './components/MainComponent.vue';
 
 export default {
   name: 'App',
+  data(){
+    return {
+      albums: [],
+    };
+  },
+  // created(){
+  //   console.log('recupero dati');
+  //   axios
+  //     .get('https://flynn.boolean.careers/exercises/api/array/music')
+  //     .then((response) => {
+  //       const bo = response.data;
+  //       this.albums = bo.response;
+  //       console.log(this.albums);
+  //       // if(status === 200) {
+  //       //   this.albums = data;
+  //       //   console.log(this.albums);
+  //       // }
+  //   })
+  // },
   components: {
-    HelloWorld
-  }
+    HeaderComponent,
+    MainComponent
+}
 }
 </script>
 
@@ -21,8 +43,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
