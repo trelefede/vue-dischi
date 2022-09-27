@@ -23,6 +23,8 @@ props: {
     h3{
         color: white;
         text-transform: uppercase;
+        font-size: 0.8rem;
+        padding-top: 10px;
     }
 }
 </style>

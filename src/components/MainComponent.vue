@@ -13,26 +13,26 @@ import axios from "axios"
 import AlbumContainerComponent from "@/components/AlbumContainerComponent.vue"
 
 export default {
-    name: "MainComponent",
-    data(){
-      return {
-        albums: [],
-      }
-    },
-    created(){
-      axios
-      .get('https://flynn.boolean.careers/exercises/api/array/music').then((response) => {
-        console.log(response);
-        console.log(response.data);
-        this.albums = response.data.response;
-      })
-      .catch((e) => {
-        console.log(e);
-      })
-    },
-    component: {
-      AlbumContainerComponent,
-    },
+  name: "MainComponent",
+  data(){
+    return {
+      albums: [],
+    }
+  },
+  created(){
+    axios
+    .get('https://flynn.boolean.careers/exercises/api/array/music').then((response) => {
+      console.log(response);
+      console.log(response.data);
+      this.albums = response.data.response;
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+  },
+  components: {
+    AlbumContainerComponent,
+  },
 }
 </script>
 

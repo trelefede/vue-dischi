@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row d-flex flex-wrap justify-content-center p-4">
     <div v-for="album in albums" :key="album.title" class="album-col">
         <AlbumComponent :info="album" />
     </div>
@@ -10,7 +10,7 @@
 import AlbumComponent from "@/components/AlbumComponent.vue"
 
 export default {
-name: "AlbumContainerComponent",
+name: 'AlbumContainerComponent',
 props: {
     albums: Array
 },
@@ -23,5 +23,6 @@ components: {
 <style lang="scss" scoped>
 .album-col{
     width: calc(100% / 5 - 20px);
+    padding: 10px;
 }
 </style>
