@@ -40,5 +40,8 @@ export default {
 main{
   color: white;
   background-color: #1e2d3b;
+  .container{
+    height: 100vh;
+  }
 }
 </style>
