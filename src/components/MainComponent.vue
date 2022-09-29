@@ -1,7 +1,8 @@
 <template>
   <main>
     <div class="container">
-      <SearchComponent :options="genres" @selectedGenre="searchByGenre" />
+      <SelectComponent :options="genres" @selected="searchByGenre" />
+      <SelectComponent :options="artists" @selected="searchByArtists" />
       <AlbumContainerComponent :albums="albumsToDisplay" />
     </div>
   </main>
@@ -12,14 +13,15 @@
 import axios from "axios"
 
 import AlbumContainerComponent from "@/components/AlbumContainerComponent.vue"
-import SearchComponent from "@/components/SearchComponent.vue"
+import SelectComponent from "@/components/SelectComponent.vue"
 
 export default {
   name: "MainComponent",
   data(){
     return {
       albums: [],
-      selectedGenre: 'all'
+      selectedGenre: 'all',
+      selectedArtist: 'all'
     }
   },
   computed:{
@@ -32,10 +34,17 @@ export default {
       });
       return array
     },
+    // metodo diverso per ciclare array, restituire valori
+    artists(){
+      const array = this.albums.map((itemArray)=> {
+        return itemArray.author;
+      })
+      return array;
+    },
     albumsToDisplay(){
       const array = [];
       this.albums.forEach((itemArray) => {
-        if(itemArray.genre === this.selectedGenre || this.selectedGenre === 'all'){
+        if(this.validGenre(itemArray) & this.validArtist(itemArray)){
           array.push(itemArray);
         }
       }) 
@@ -56,11 +65,20 @@ export default {
   methods: {
     searchByGenre(genre){
       this.selectedGenre = genre;
-    }
+    },
+    searchByArtists(artist){
+      this.selectedArtist = artist;
+    },
+    validGenre(itemArray){
+      return  itemArray.genre === this.selectedGenre || this.selectedGenre === 'all';
+    },
+    validArtist(itemArray){
+      return itemArray.author === this.selectedArtist || this.selectedArtist === 'all';
+    },
   },
   components: {
     AlbumContainerComponent,
-    SearchComponent
+    SelectComponent
   },
 }
 </script>
